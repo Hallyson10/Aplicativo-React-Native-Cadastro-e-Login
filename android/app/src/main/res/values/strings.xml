@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Coliving</string>
+    <string name="gallery_loading_view_click_loading_more">Selecione</string>
+    <string name="gallery_loading_view_no_more">No more</string>
+    <string name="gallery_loading_view_loading">Loading…</string>
+
+    <string name="gallery_over_button_text">Complete</string>
+    <string name="gallery_over_button_text_checked">Complete(%1$d/%2$d)</string>
+    <string name="gallery_image_max_size_tip">Permitido selecionar até %1$d fotos</string>
+    <string name="gallery_page_title">%1$d/%2$d</string>
+    <string name="gallery_media_grid_video_title">Vídeo</string>
+    <string name="gallery_default_request_storage_access_permission_tips">Permissão para ler sua galeria de fotos</string>
+    <string name="gallery_default_camera_access_permission_tips">>Permissão para abrir sua Câmera</string>
+    <string name="gallery_default_media_empty_tips">Vazio</string>
+    <string name="gallery_device_no_camera_tips">O telefone não tem camêra</string>
+    <string name="gallery_device_camera_unable">Camera not available</string>
+    <string name="gallery_preview_title">Visualização</string>
+    <string name="gallery_all_image">Galeria</string>
+    <string name="gallery_all_video">Vídeos</string>
+    <string name="gallery_take_image">Câmera</string>
+    <string name="gallery_image_selected">Selecionado</string>
+    <string name="gallery_image_unit">Imagens</string>
+    <string name="gallery_title_cut">Ajustar</string>
+    <string name="gallery_video">Gravar vídeo</string>
 </resources>

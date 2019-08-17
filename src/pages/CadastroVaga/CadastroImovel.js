@@ -11,7 +11,7 @@ import ButtonsComodies from '../../Components/PropertyRegistration/ButtonComodie
 import ButtonProperty from '../../Components/Buttons/ButtonProperty'
 import DescriptionProperty from '../../Components/PropertyRegistration/DescriptionProperty'
 import styles from '../../Components/PropertyRegistration/styles'
-import { AddPropertieVaga } from '../../store/Actions/PropertiesVagas'
+import { AlterTypeImovel} from '../../store/Actions/PropertiesVagas'
 import { connect } from 'react-redux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import aboutTheVacancy from '../../Components/PropertyRegistration/SharedProperty/AboutTheVacancy';
@@ -57,7 +57,7 @@ class CadastroImovel extends PureComponent {
       },
       headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: 'bold',
+        fontFamily:'BaiJamjuree-ExtraLight'
       },
     }
   };
@@ -78,10 +78,12 @@ class CadastroImovel extends PureComponent {
       await this.setState({ compartilhada: false })
       await this.setState({ completo: true })
       await this.setState({ vaga: 'Imóvel Completo' })
+      await this.props.AlterTypeImovel(this.state.vaga)
     } else if (this.state.compartilhada === false) {
       await this.setState({ compartilhada: true })
       this.setState({ completo: false })
       this.setState({ vaga: 'Vaga Compartilhada' })
+      await this.props.AlterTypeImovel(this.state.vaga)
     }
   }
   checkedCompleto = async () => {
@@ -89,15 +91,16 @@ class CadastroImovel extends PureComponent {
       await this.setState({ completo: false })
       await this.setState({ compartilhada: true })
       await this.setState({ vaga: 'Vaga Compartilhada' })
+      await this.props.AlterTypeImovel(this.state.vaga)
     } else if (this.state.completo === false) {
       await this.setState({ completo: true })
       this.setState({ compartilhada: false })
-      this.setState({ vaga: 'Imóvel Completo' })
+      this.setState({ vaga: 'Imovel Completo' })
+      await this.props.AlterTypeImovel(this.state.vaga)
     }
   }
   componentDidMount = () => {
     const {preferencia} = this.props
-    alert(preferencia)
     this.props.navigation.setParams({
       text: <TouchableOpacity onPress={() => alert('ei')}>
         <View>
@@ -110,16 +113,16 @@ class CadastroImovel extends PureComponent {
     const { compartilhada, completo, comp } = this.state
     const { open } = this.props
     return (
-      <View style={styles.wrapper}>
+      <KeyboardAvoidingView behavior={Platform.OS ==='ios'? "padding" : null} style={styles.wrapper}>
 
-        <StatusBar backgroundColor="#7D44FF" style={{ backgroundColor: 'white' }} />
+        <StatusBar backgroundColor="#8F00FF" style={{ backgroundColor: 'white' }} />
         <ScrollView style={{ flex: 1 }} >
           <View style={{ flex: 1, alignItems: 'center' }}>
             <TopUserProperties
-              nome={this.props.usuario.nome.split(' ').slice(0, 2).join(' ').substr(-50, 25)}
+              nome={this.props.usuario? this.props.usuario.nome.split(' ').slice(0, 2).join(' ').substr(-50, 25):''}
               url={this.props.usuario.uri} />
             <View style={{
-              marginBottom: 10,
+              marginBottom: 8,
               alignItems: 'flex-start',
               marginTop: 10,
               width: '100%',
@@ -128,7 +131,7 @@ class CadastroImovel extends PureComponent {
             }}>
               <Text style={{ fontSize: 18, color: "#7D44FF", fontWeight: '600' }}>Tipo da vaga</Text>
             </View>
-            <View style={{ alignItems: 'center', flexDirection: 'row', marginTop: 6, marginBottom: 8 }}>
+            <View style={{ alignItems: 'center', flexDirection: 'row', marginTop: 6, marginBottom: 4 }}>
               <ButtonProperty
                 typeProperty={completo}
                 title='Imóvel Completo'
@@ -146,7 +149,7 @@ class CadastroImovel extends PureComponent {
               marginBottom: 12,
               width: '100%',
               alignItems: 'flex-start',
-              marginTop: 18,
+              marginTop: 16,
               justifyContent: 'flex-start'
             }}>
               <Text style={styles.introduction}>Sobre o Imóvel</Text>
@@ -157,7 +160,7 @@ class CadastroImovel extends PureComponent {
               marginBottom: 12,
               width: '100%',
               alignItems: 'flex-start',
-              marginTop: 18,
+              marginTop: 14,
               justifyContent: 'flex-start'
             }}>
               <Text style={styles.introduction}>Sobre a Vaga</Text>
@@ -180,14 +183,15 @@ class CadastroImovel extends PureComponent {
           </View>
 
         </ScrollView>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
 const mapStateToProps = (state) => ({
   usuario: state.Profile.usuario,
-  preferencia : state.Vagas.preferencia
+  preferencia : state.Vagas.preferencia,
+  images : state.Vagas.images
 })
 export default connect(mapStateToProps, {
-  AddPropertieVaga
+  AlterTypeImovel
 })(CadastroImovel)

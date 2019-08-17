@@ -16,6 +16,7 @@ import {
   StatusBar,
   View
 } from 'react-native'
+
 import { Thumbnail } from 'native-base';
 import { connect } from 'react-redux'
 import { CheckBox } from 'react-native-elements'
@@ -363,11 +364,12 @@ class Cadastro extends PureComponent {
                 onSubmitEditing={() => { this.secondTextInput.focus(); }}
               />
               <Text style={{ fontSize: 12, color: 'red', marginBottom: 1 }}>{this.state.errorImage} </Text>
+              
               <TextInput
                 placeholder='Digite um email válido'
                 value={this.props.email}
                 onChangeText={(email) => { this.props.modificaEmail(email) }}
-                style={[styles.textInput, { marginTop: -1 }]}
+                style={[styles.textInput,{marginTop:1}]}
                 placeholderTextColor='#ccc'
                 autoCapitalize={'none'}
                 autoCorrect={false}

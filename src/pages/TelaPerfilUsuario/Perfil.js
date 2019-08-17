@@ -52,12 +52,13 @@ class Usuarios extends PureComponent {
                     <TouchableOpacity onPress={() => { this.props.Logout() }}>
                         <Text>Sair</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={async () => {
+                    <TouchableOpacity style={{height:40,width:180,alignItems:'center',
+                    borderWidth:0.6}} onPress={async () => {
                             await this.setState({modall:true})
                             await this.props.navigation.navigate('CadastroImovel')
                             await this.setState({modall:false})
                     }}>
-                        <Text>Cadastrar imóvel</Text>
+                        <Text style={{fontFamily:'ChauPhilomeneOne-Regular',color:"#7D44FF",fontSize:20}}>Cadastrar imóvel</Text>
                     </TouchableOpacity>
                 </View>
                 <Modal

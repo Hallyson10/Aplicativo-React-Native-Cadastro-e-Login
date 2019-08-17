@@ -26,9 +26,10 @@ export default TopUserProperties = (props) => {
         <View style={{
             width: '100%',
             borderColor: "#7D44FF",
-            marginTop: 14,
+            marginTop: 10,
             marginBottom: 10,
-            borderBottomWidth: 0.4
+            borderBottomWidth: 0.4,
+            
         }}>
             <View style={{
                 marginStart: 18,
@@ -41,7 +42,7 @@ export default TopUserProperties = (props) => {
                     borderColor="#f2f2f2" large source={props.url}
                     style={styles.uri} />
                 <View>
-                    <Text style={{ fontWeight: '100', fontSize: 12, marginBottom: -5 }}>Proprietário</Text>
+                    <Text style={{ fontWeight: '100', fontSize: 12, marginBottom: -5 }}>Proprietário(a)</Text>
                     {this.prop()}
                 </View>
             </View>

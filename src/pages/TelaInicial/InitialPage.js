@@ -3,6 +3,7 @@ import { Text,StatusBar, StyleSheet, View, Modal, ActivityIndicator, AsyncStorag
 import { connect } from 'react-redux'
 import firebase from 'firebase'
 import { limpa } from '../../store/Actions/RegisterActions'
+import { limpaVaga } from '../../store/Actions//PropertiesVagas'
 import { Limpa } from '../../store/Actions/AuthActions'
 import { TextInputMask } from 'react-native-masked-text'
 import b64 from 'base-64'
@@ -21,6 +22,7 @@ class InitialPage extends PureComponent {
         await firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                //this.props.Logout()
+               //this.props.limpaVaga();
                 userAtual = user.email;
                 var useraut = b64.encode(user.email)
                 setTimeout(()=>{
@@ -57,6 +59,11 @@ const mapStateToProps = state => ({
 
 })
 
-export default connect(mapStateToProps, { limpa, Limpa ,Profile,Logout})(InitialPage)
+export default connect(mapStateToProps, { 
+    limpa,
+     Limpa ,
+     Profile,
+     Logout,
+     limpaVaga})(InitialPage)
 
 

@@ -19,7 +19,6 @@ export default class AboutTheVacancy extends PureComponent {
         marginBottom: 10,
         width: '100%',
         alignItems: 'flex-start',
-        marginTop: 10,
         justifyContent: 'flex-start'
       }}>
 

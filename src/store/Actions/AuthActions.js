@@ -52,8 +52,9 @@ const usuario_sucesso = async (value, dispatch) => {
         await firebase.database().ref('/users/' + emailb64).once('value', snapshot => {
             let usuario = _.map(snapshot.val())
             dispatch({ type: PROFILE, payload: usuario })
+            dispatch({ type: USUARIO_SUCESSO });
         })
-        dispatch({ type: USUARIO_SUCESSO });
+       
     } catch (error) {
         Alert.alert('Ops!', 'ocorreu um problema ao entrar!')
     }
@@ -72,6 +73,7 @@ export const Logout = () => {
 
                     dispatch({ type: DESLOGADO })
                     dispatch({ type: LIMPA })
+                    dispatch({type:'limpaVaga'})
                 }).then(() => { Alert.alert(' ', 'Volte sempre!') })
 
             }

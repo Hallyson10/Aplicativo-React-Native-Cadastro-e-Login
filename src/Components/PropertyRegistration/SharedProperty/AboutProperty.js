@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet,Picker,TextInput, View } from 'react-native'
 import styles from '../styles'
-export default class AboutSharedProperty extends Component {
+import {connect } from 'react-redux'
+class AboutSharedProperty extends Component {
     state={
        compartilhada : true,
        completo:true,
@@ -9,10 +10,10 @@ export default class AboutSharedProperty extends Component {
        tipoDeQuarto : '',
        qtdQuartos:0,
        QtdBanheiros:0,
-       quartoSuite: 'Não',
-       ceramica:'Não',
-       forrado : 'Não',
-       preferenciaVaga : 'Não tem prefêrencia',
+       quartoSuite: '',
+       ceramica:'',
+       forrado : '',
+       preferenciaVaga : '',
        valorTotalAluguel : 0,
        valorIndividualAluguel : 0,
        qtdPessoasMorando : 0,
@@ -21,13 +22,15 @@ export default class AboutSharedProperty extends Component {
     render() {
         return (
             <View style={{
-                marginBottom: 10,
+                marginBottom: 6,
                 width: '100%',
                 alignItems: 'flex-start',
                 marginTop: 10,
                 justifyContent: 'flex-start'
               }}>
-                  <View style={styles.picker}>
+              {this.props.tipomoradia === 'Vaga Compartilhada' ? 
+              null : 
+              <View style={styles.picker}>
                     <Picker
                       style={{ flex: 1, width: '100%', color: '#555057' }}
                       mode='dialog'
@@ -48,6 +51,7 @@ export default class AboutSharedProperty extends Component {
                       <Picker.Item label="10 Quartos" value="10" />
                     </Picker>
                   </View>
+              }
                 <View style={styles.picker}>
                   <Picker
                     style={{ flex: 1, width: '100%', color: '#555057' }}
@@ -64,6 +68,8 @@ export default class AboutSharedProperty extends Component {
                     <Picker.Item label="5 Banheiros" value="5" />
                   </Picker>
                 </View>
+                {this.props.tipomoradia === 'Vaga Compartilhada' ? 
+                null :
                 <View style={styles.picker}>
                   <Picker
                     style={{ flex: 1, width: '100%', color: '#555057' }}
@@ -81,6 +87,7 @@ export default class AboutSharedProperty extends Component {
                     <Picker.Item label="5 Quartos suítes" value="5" />
                   </Picker>
                 </View>
+                }
                 <View style={styles.picker}>
                   <Picker
                     style={{ flex: 1, width: '100%', color: '#555057' }}
@@ -111,5 +118,11 @@ export default class AboutSharedProperty extends Component {
         )
     }
 }
+const mapStateToProps = (state)=>({
+  tipomoradia : state.Vagas.tipomoradia
+})
+export default connect(mapStateToProps,{
+  
+})(AboutSharedProperty) 
 
 
